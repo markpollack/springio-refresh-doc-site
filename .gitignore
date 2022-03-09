@@ -1,0 +1,8 @@
+build/
+.idea/
+node_modules/
+.cache/
+*.DS_Store
+
+# generated files
+antora-playbook-content-for-preview.yml

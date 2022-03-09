@@ -1,0 +1,12 @@
+site:
+  title: Spring IO Docs
+  start_page: springio::index.adoc
+content:
+  sources:
+# you should have cloned the repository https://github.com/markpollack/springio-refresh-doc
+# into the following directory  
+  - url: ../springio-refresh-doc
+
+ui:
+  bundle:
+    url: ./resources/antora-ui-bundle.zip

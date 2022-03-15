@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Web Security | Spring IO Docs</title>    <meta name="generator" content="Antora 3.0.0">
+<title>Scheduling | Spring IO Docs</title>    <meta name="generator" content="Antora 3.0.0">
 <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2.6.3/dist/cdn/docsearch.css" integrity="sha256-tY3FCmL2d8yoJBOVyC2aOxdixg8sLT6CHlDWX/VUJaY=" crossorigin="anonymous">-->
 
 
@@ -98,7 +98,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="index.html">Security</a>
+    <a class="nav-link" href="../security/index.html">Security</a>
   </li>
 </ul>
   </li>
@@ -126,7 +126,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../batch/index.html">Batch</a>
+    <a class="nav-link" href="index.html">Batch</a>
   </li>
 </ul>
   </li>
@@ -157,73 +157,47 @@
   <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Spring IO</a></li>
-    <li><a href="web-security.html">Web Security</a></li>
+    <li><a href="scheduling.html">Scheduling</a></li>
   </ul>
 </nav>
-    <div class="edit-this-page"><a href="https://github.com/markpollack/springio-refresh-doc/edit/main/modules/security/pages/web-security.adoc">Edit this Page</a></div>
+    <div class="edit-this-page"><a href="https://github.com/markpollack/springio-refresh-doc/edit/main/modules/batch/pages/scheduling.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
 
 
-  <h1 class="page">Web Security</h1>
+  <h1 class="page">Scheduling</h1>
   <div class="sect1">
 <h2 id="_problem"><a class="anchor" href="#_problem"></a>Problem</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You want to add authentication, authorization, and protection against common exploits to your web application.</p>
+<p>You would like to execute some processing task based on a schedule.
+The task can be as simple as logging information every hour to a log file or transferring files from Amazon S3 to a local computer for processing at a specific time.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_solution"><a class="anchor" href="#_solution"></a>Solution</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_authentication"><a class="anchor" href="#_authentication"></a>Authentication</h3>
 <div class="paragraph">
-<p>Spring Security provides built-in support for authentication.
-Authentication is how we verify the identity of who is trying to access a particular resource.
-A common way to authenticate users is by requiring the user to enter a username and password.
-Once authentication is performed, we know the identity and can complete authorization.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_authorization"><a class="anchor" href="#_authorization"></a>Authorization</h3>
-<div class="paragraph">
-<p>Spring Security provides comprehensive and extensible support for authorization.
-While authentication is how we verify who is trying to access a particular resource, authorization verifies whether that user can access that resource.
-This term is often used interchangeably with access control.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_protection_against_common_exploits"><a class="anchor" href="#_protection_against_common_exploits"></a>Protection against common exploits</h3>
-<div class="paragraph">
-<p>Adding Spring Security to your application will allow you to easily protect against exploits such as session fixation, clickjacking, Cross-Site Request Forgery (CSRF), etc.</p>
-</div>
+<p>The Spring Framework provides several annotations to simplify the use of the <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/executors.html">Java&#8217;s Executor Framework</a> for task scheduling and asynchronous method invocation.
+The Executor Framework manages the resources required to execute a task.
+The managed resources are threads, allowing processing tasks to execute in a thread pool separate from the rest of the application.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_example_architectures"><a class="anchor" href="#_example_architectures"></a>Example Architectures</h2>
+<h2 id="_example_architecture"><a class="anchor" href="#_example_architecture"></a>Example Architecture</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_securing_an_endpoint_with_http_basic"><a class="anchor" href="#_securing_an_endpoint_with_http_basic"></a>Securing an endpoint with HTTP Basic</h3>
-<div class="paragraph">
-<p>In the following diagram, the application requires a user to authenticate via HTTP Basic to access the home page.
-When a client (such as a web browser) makes a request to the server without sending any credentials, the server responds with a <code>401 Unauthorized</code> response status.
-It also sets the <code>WWW-Authenticate</code> response header, which causes the browser to prompt the user for credentials.
-The browser then makes a request to <code>/home</code> again with the credentials in the <code>Authorization</code> header.
-Depending on whether the credentials are valid or not, the server responds with a <code>200 OK</code> status or <code>401 Unauthorized</code> status.</p>
-</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/basic_auth.png" alt="basic auth" width="70%">
+<img src="_images/task-executor.png" alt="task executor" width="70%">
 </div>
 </div>
 <div class="paragraph">
-<p>The above architecture does not enforce any authorization and assumes that all authenticated users can access <code>/home</code>.
-However, it is typical for an application to have multiple users with different permissions and allow access to a resource based on who has logged in.</p>
-</div>
+<p>The Java Executor framework is responsible for scheduling the execution of a task, which we can think of as the logic contained in the method of a Java class.
+Tasks are submitted to a queue and then pulled off the queue and executed on a dedicated thread pool.
+Instead of working with the low-level JDK classes, you can implement this type of architecture using a few Spring annotations on your Java classes.</p>
 </div>
 </div>
 </div>
@@ -231,34 +205,51 @@ However, it is typical for an application to have multiple users with different 
 <h2 id="_gist"><a class="anchor" href="#_gist"></a>Gist</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Adding Spring Security dependencies to your Spring Boot application provides a set of secure defaults for your application.
-For example, when adding the <code>spring-boot-starter-security</code> dependency, all web endpoints will be secure by default and require an authentic user to access them.
-Spring Boot also configures a default user with a generated password.
-You do not need to write any code in your application to get the default setup.</p>
-</div>
-<div class="paragraph">
-<p>If you want to customize Spring Boot&#8217;s defaults, such as allow only admin users to access certain pages, you can do so easily:</p>
+<p>To setup the underlying scheduling infrastructure, add the <code>@EnableScheduling</code> annotation to your main Spring Boot application class.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Configuration(proxyBeanMethods = false)
-public class SecurityConfiguration {
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@SpringBootApplication
+@EnableScheduling
+public class SchedulingTasksApplication {
 
-    @Bean
-	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests((requests) -&gt; {
-			requests.antMatchers("/admin").hasRole("ROLE_ADMIN");
-			requests.anyRequest().authenticated();
-		});
-		http.httpBasic(Customizer.withDefaults());
-		return http.build();
+	public static void main(String[] args) {
+		SpringApplication.run(SchedulingTasksApplication.class);
 	}
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>HTTP Basic is just one of the authentication mechanisms that Spring Security supports.
-Others including OAuth 2.0 Login, SAML 2.0 Login, Form login are also supported.</p>
+<p>The processing that we will schedule to execute is in a class method.
+The method should have a void return type and have any parameters.
+In a complete example, you would use dependency injection to access collaborating objects configured for the processing task.</p>
+</div>
+<div class="paragraph">
+<p>In this simple gist, the processing will write to <code>System.out</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public class MyTask {
+
+  @Scheduled(cron = "0 0 * * * *")
+  public void task() {
+      System.out.println("task() method executed at the top of every hour every day.")
+  }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default the size of the thread pool is set to one.
+You can change that by setting the following property in <code>application.properties</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">spring.task.scheduling.pool.size=10</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Other options on the <code>@Scheduled</code> annotation support the execution of the method at a fixed interval of time.</p>
 </div>
 </div>
 </div>
@@ -268,27 +259,9 @@ Others including OAuth 2.0 Login, SAML 2.0 Login, Form login are also supported.
 <div class="openblock card card-index">
 <div class="content">
 <div class="paragraph">
-<p><a href="https://spring.io/projects/spring-security"><span class="card-title">Spring Security</span> <span class="card-body card-content-overflow">Project website</span></a></p>
+<p><a href="https://spring.io/projects/spring-framework"><span class="card-title">Spring Framework</span> <span class="card-body card-content-overflow">Project website</span></a></p>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_getting_started_documentation"><a class="anchor" href="#_getting_started_documentation"></a>Getting started documentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://docs.spring.io/spring-security/reference/getting-spring-security.html">Getting Spring Security</a></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.spring.io/spring-security/reference/servlet/getting-started.html">Getting Started using a Servlet based application</a></p>
-</li>
-<li>
-<p><a href="https://docs.spring.io/spring-security/reference/reactive/getting-started.html">Getting Started using a WWebFlux based application</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -298,21 +271,14 @@ Others including OAuth 2.0 Login, SAML 2.0 Login, Form login are also supported.
 <div class="openblock card card-index">
 <div class="content">
 <div class="paragraph">
-<p><a href="https://spring.io/guides/gs/securing-web"><span class="card-title">Securing a Web Application</span> <span class="card-body card-content-overflow">Learn how to protect your web application with Spring Security.</span></a></p>
+<p><a href="https://spring.io/guides/gs/scheduling-tasks"><span class="card-title">Scheduling Tasks</span> <span class="card-body card-content-overflow">Learn how to schedule tasks with Spring.</span></a></p>
 </div>
 </div>
 </div>
 <div class="openblock card card-index">
 <div class="content">
 <div class="paragraph">
-<p><a href="https://spring.io/guides/gs/securing-web"><span class="card-title">Spring Security Architecture</span> <span class="card-body card-content-overflow">How Spring Security fits together with Spring Boot.</span></a></p>
-</div>
-</div>
-</div>
-<div class="openblock card card-index">
-<div class="content">
-<div class="paragraph">
-<p><a href="https://www.baeldung.com/security-spring"><span class="card-title">Security with Spring</span> <span class="card-body card-content-overflow">Baeldung tutorial.</span></a></p>
+<p><a href="https://www.baeldung.com/spring-scheduled-tasks"><span class="card-title">The @Scheduled Annotation in Spring</span> <span class="card-body card-content-overflow">Baeldung tutorials.</span></a></p>
 </div>
 </div>
 </div>

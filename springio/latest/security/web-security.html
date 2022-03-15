@@ -184,21 +184,21 @@
 <p>Spring Security provides built-in support for authentication.
 Authentication is how we verify the identity of who is trying to access a particular resource.
 A common way to authenticate users is by requiring the user to enter a username and password.
-Once authentication is performed we know the identity and can perform authorization.</p>
+Once authentication is performed, we know the identity and can complete authorization.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_authorization"><a class="anchor" href="#_authorization"></a>Authorization</h3>
 <div class="paragraph">
 <p>Spring Security provides comprehensive and extensible support for authorization.
-While authentication is how we verify who is trying to access a particular resource, authorization is verifying whether that user is allowed to access that resource.
+While authentication is how we verify who is trying to access a particular resource, authorization verifies whether that user can access that resource.
 This term is often used interchangeably with access control.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_protection_against_common_exploits"><a class="anchor" href="#_protection_against_common_exploits"></a>Protection against common exploits</h3>
 <div class="paragraph">
-<p>Adding Spring Security to your application will allow you to easily protect against exploits such as session fixation, clickjacking, Cross Site Request Forgery (CSRF), etc.</p>
+<p>Adding Spring Security to your application will allow you to easily protect against exploits such as session fixation, clickjacking, Cross-Site Request Forgery (CSRF), etc.</p>
 </div>
 </div>
 </div>
@@ -209,9 +209,9 @@ This term is often used interchangeably with access control.</p>
 <div class="sect2">
 <h3 id="_securing_an_endpoint_with_http_basic"><a class="anchor" href="#_securing_an_endpoint_with_http_basic"></a>Securing an endpoint with HTTP Basic</h3>
 <div class="paragraph">
-<p>In the following diagram, the application requires a user to authenticate via HTTP Basic to be able to access the home page.
+<p>In the following diagram, the application requires a user to authenticate via HTTP Basic to access the home page.
 When a client (such as a web browser) makes a request to the server without sending any credentials, the server responds with a <code>401 Unauthorized</code> response status.
-It also sets the <code>WWW-Authenticate</code> response header which causes the browser to prompt the user for credentials.
+It also sets the <code>WWW-Authenticate</code> response header, which causes the browser to prompt the user for credentials.
 The browser then makes a request to <code>/home</code> again with the credentials in the <code>Authorization</code> header.
 Depending on whether the credentials are valid or not, the server responds with a <code>200 OK</code> status or <code>401 Unauthorized</code> status.</p>
 </div>
@@ -221,7 +221,7 @@ Depending on whether the credentials are valid or not, the server responds with 
 </div>
 </div>
 <div class="paragraph">
-<p>The above architecture does not enforce any authorization and assumes that all authenticated users are allowed to access <code>/home</code>.
+<p>The above architecture does not enforce any authorization and assumes that all authenticated users can access <code>/home</code>.
 However, it is typical for an application to have multiple users with different permissions and allow access to a resource based on who has logged in.</p>
 </div>
 </div>
@@ -232,7 +232,7 @@ However, it is typical for an application to have multiple users with different 
 <div class="sectionbody">
 <div class="paragraph">
 <p>Adding Spring Security dependencies to your Spring Boot application provides a set of secure defaults for your application.
-For example, when the <code>spring-boot-starter-security</code> dependency is added, all web endpoints will be secure by default and require a user to be authenticated to be able to access them.
+For example, when adding the <code>spring-boot-starter-security</code> dependency, all web endpoints will be secure by default and require an authentic user to access them.
 Spring Boot also configures a default user with a generated password.
 You do not need to write any code in your application to get the default setup.</p>
 </div>
@@ -262,15 +262,15 @@ Others including OAuth 2.0 Login, SAML 2.0 Login, Form login are also supported.
 </div>
 </div>
 </div>
-<div class="sect1">
+<div class="sect1 card-section">
 <h2 id="_relevant_spring_projects"><a class="anchor" href="#_relevant_spring_projects"></a>Relevant Spring Projects</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Spring Security</p>
-</li>
-</ul>
+<div class="openblock card card-index">
+<div class="content">
+<div class="paragraph">
+<p><a href="https://spring.io/projects/spring-security"><span class="card-title">Spring Security</span> <span class="card-body card-content-overflow">Project website</span></a></p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -278,15 +278,43 @@ Others including OAuth 2.0 Login, SAML 2.0 Login, Form login are also supported.
 <h2 id="_get_started"><a class="anchor" href="#_get_started"></a>Get Started</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p><a href="https://docs.spring.io/spring-security/reference/getting-spring-security.html">Getting Spring Security</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.spring.io/spring-security/reference/servlet/getting-started.html">Getting Started using a Servlet based application</a></p>
+</li>
+<li>
+<p><a href="https://docs.spring.io/spring-security/reference/reactive/getting-started.html">Getting Started using a WWebFlux based application</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_related"><a class="anchor" href="#_related"></a>Related</h2>
+<div class="sect1 card-section">
+<h2 id="_related_guides"><a class="anchor" href="#_related_guides"></a>Related Guides</h2>
 <div class="sectionbody">
+<div class="openblock card card-index">
+<div class="content">
 <div class="paragraph">
-<p>TODO</p>
+<p><a href="https://spring.io/guides/gs/securing-web"><span class="card-title">Securing a Web Application</span> <span class="card-body card-content-overflow">Learn how to protect your web application with Spring Security.</span></a></p>
+</div>
+</div>
+</div>
+<div class="openblock card card-index">
+<div class="content">
+<div class="paragraph">
+<p><a href="https://spring.io/guides/gs/securing-web"><span class="card-title">Spring Security Architecture</span> <span class="card-body card-content-overflow">How Spring Security fits together with Spring Boot.</span></a></p>
+</div>
+</div>
+</div>
+<div class="openblock card card-index">
+<div class="content">
+<div class="paragraph">
+<p><a href="https://www.baeldung.com/security-spring"><span class="card-title">Security with Spring</span> <span class="card-body card-content-overflow">Baeldung tutorials.</span></a></p>
+</div>
+</div>
 </div>
 </div>
 </div>

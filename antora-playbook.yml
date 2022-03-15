@@ -10,3 +10,7 @@ content:
 ui:
   bundle:
     url: ./resources/antora-ui-bundle.zip
+# ui:
+#   bundle:
+#     url: https://github.com/rwinch/antora-ui-spring/releases/download/latest/ui-bundle.zip
+#     snapshot: true    
